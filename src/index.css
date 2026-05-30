@@ -322,7 +322,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 0;
+  padding: 1.25rem 1.5rem;
 }
 
 /* Redesigned Logo Block */
@@ -467,7 +467,11 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 0;
+  padding: 0 1.5rem;
+}
+
+.mobile-nav-actions {
+  display: none;
 }
 
 .nav-links {
@@ -1702,15 +1706,16 @@ img {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 1.25rem;
 }
 
 .gallery-item {
   position: relative;
-  height: 220px;
+  height: 240px;
   overflow: hidden;
-  border-radius: 0;
-  box-shadow: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item-img {
@@ -1734,28 +1739,42 @@ img {
   opacity: 0;
   transition: opacity 0.3s ease;
   color: var(--text-light);
-  padding: 1rem;
+  padding: 1.25rem;
   text-align: center;
 }
 
-.gallery-item:hover .gallery-item-img {
-  transform: scale(1.1);
+.gallery-item:hover,
+.gallery-item:active {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-.gallery-item:hover .gallery-item-overlay {
+.gallery-item:hover .gallery-item-img,
+.gallery-item:active .gallery-item-img {
+  transform: scale(1.08);
+}
+
+.gallery-item:hover .gallery-item-overlay,
+.gallery-item:active .gallery-item-overlay {
   opacity: 1;
 }
 
 .gallery-item-overlay h4 {
   color: var(--text-light);
   font-size: 1.05rem;
+  font-weight: 700;
   margin-bottom: 0.25rem;
+  line-height: 1.4;
 }
 
 .gallery-item-overlay span {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.35rem;
+  display: block;
 }
 
 /* 13. Footer Section */
@@ -2050,15 +2069,7 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Native touch overlay support for success story cards */
-  @media (hover: none) {
-    .gallery-item-overlay {
-      opacity: 1;
-      background: linear-gradient(to top, rgba(11, 126, 62, 0.95) 0%, rgba(11, 126, 62, 0.5) 100%);
-      justify-content: flex-end;
-      padding-bottom: 1.5rem;
-    }
-  }
+  /* Mobile overlay active support */
 
   .footer-top-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -2108,11 +2119,39 @@ img {
   }
 
   .header-top {
-    padding: 0.65rem 0;
+    padding: 0.65rem 1.25rem;
+  }
+
+  .logo-brand-title {
+    font-size: 1.85rem;
+  }
+
+  .logo-brand-sun {
+    width: 26px;
+    height: 26px;
+  }
+
+  .logo-brand-sub {
+    font-size: 0.5rem;
+    letter-spacing: 0.3px;
   }
 
   .top-utility-bar {
+    display: block;
+    font-size: 0.7rem;
+  }
+
+  .top-bar-links a:not(:first-child) {
     display: none;
+  }
+
+  .top-bar-links {
+    gap: 0.75rem;
+    margin-right: 0.75rem;
+  }
+
+  .top-bar-socials {
+    gap: 0.85rem;
   }
 
   .header-info-blocks {
@@ -2165,13 +2204,77 @@ img {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--brand-green-dark);
+    background-color: #12A645;
     box-shadow: var(--shadow-lg);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .mobile-nav-actions {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem;
+    gap: 0.75rem;
+    width: 100%;
+    background-color: #12A645;
+  }
+
+  .mobile-btn-student {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.7rem;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid var(--brand-orange);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  .mobile-btn-student:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-btn-donate {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--brand-orange);
+    color: #ffffff;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  .mobile-btn-donate:hover {
+    background-color: var(--brand-orange-dark);
+  }
+
+  @keyframes slideDownFade {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .nav-links.open {
     display: flex;
+    animation: slideDownFade 0.25s ease-out forwards;
   }
 
   .nav-links li {
@@ -2329,8 +2432,19 @@ img {
     display: none;
   }
 
+  .section-title,
+  .success-stories .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+  }
+
   .gallery-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
   /* 7. Footer Grid & Centered Elements */

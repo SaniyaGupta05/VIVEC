@@ -115,6 +115,15 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+            <li className="mobile-nav-actions">
+              <a href="#login" className="mobile-btn-student" onClick={() => setIsOpen(false)}>
+                <User size={16} />
+                <span>Student Login</span>
+              </a>
+              <a href="#donate" className="mobile-btn-donate" onClick={() => setIsOpen(false)}>
+                DONATE
+              </a>
+            </li>
           </ul>
 
           <div className="nav-search-wrap">
