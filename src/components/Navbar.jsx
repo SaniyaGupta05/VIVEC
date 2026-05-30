@@ -44,20 +44,25 @@ export default function Navbar() {
             <a href="#register" className="btn btn-orange">Apply Now</a>
           </div>
         </div>
-      </div>
 
-      {/* Primary Green Navigation Bar */}
-      <nav className="navbar">
-        <div className="container nav-container">
-          {/* Mobile hamburger button */}
+        {/* Mobile controls: Search & hamburger menu inside white header */}
+        <div className="mobile-header-controls">
+          <button className="mobile-search-btn" aria-label="Search">
+            <Search size={22} />
+          </button>
           <button
             className="mobile-menu-btn"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
+        </div>
+      </div>
 
+      {/* Primary Green Navigation Bar */}
+      <nav className="navbar">
+        <div className="container nav-container">
           <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
             {links.map((link) => (
               <li key={link}>
